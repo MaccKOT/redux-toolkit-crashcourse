@@ -1,19 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { addTodo } from './store/todoSlice';
+import NewTodoForm from './components/NewTodoForm';
+import TodoList from './components/TodoList';
+
 import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [text, setText] = useState('');
+  const dispatch = useDispatch();
+
+  const handleAction = () => {
+    if (text.trim().length) {
+      dispatch(addTodo({ text }));
+      setText('');
+    }
+  };
 
   return (
     <div className='App'>
-      <header className='App-header'>
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type='button' onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-      </header>
+      <NewTodoForm
+        value={text}
+        updateText={setText}
+        handleAction={handleAction}
+      />
+      <TodoList />
     </div>
   );
 }
