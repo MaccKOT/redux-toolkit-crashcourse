@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "start": "npm run dev & wait-on tcp:3000 -v",
     "build": "vite build",
     "serve": "vite preview",
-    "test:cypress": "start-server-and-test dev http://localhost:3000 cypress",
+    "test:ci": "cypress run --headless",
     "cypress": "cypress open"
   },
   "dependencies": {
@@ -21,7 +22,6 @@
     "eslint": "^7.31.0",
     "eslint-plugin-cypress": "^2.11.3",
     "eslint-plugin-react": "^7.24.0",
-    "start-server-and-test": "^1.13.1",
     "vite": "^2.4.3"
   }
 }
